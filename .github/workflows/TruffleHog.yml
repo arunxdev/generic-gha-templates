@@ -28,9 +28,13 @@ jobs:
         uses: trufflesecurity/trufflehog@v3.90.8
         continue-on-error: true
         with:
+          path: ./
           base: "${{ github.event.repository.default_branch }}"
           head: HEAD
           extra_args: --log-level=2 --results=verified,unknown,unverified
+
+      - name: Scan Results Status
+        run: echo ${{steps.trufflehog.outputs.result}} > /.github/result.txt
 
       - name: Scan Results Status
         if: steps.trufflehog.outcome == 'failure'
