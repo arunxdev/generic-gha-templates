@@ -33,8 +33,11 @@ jobs:
           head: HEAD
           extra_args: --log-level=2 --results=verified,unknown,unverified
 
-      - name: Scan Results Status
-        run: echo ${{steps.trufflehog.outputs.result}} > /.github/result.txt
+      - name: Scan Results Output
+        run: |
+          echo "## Scan Results" >> $GITHUB_STEP_SUMMARY
+          echo ${{steps.trufflehog.outputs.result}} >> $GITHUB_STEP_SUMMARY
+          echo ${{steps.trufflehog.outputs.result}}
 
       - name: Scan Results Status
         if: steps.trufflehog.outcome == 'failure'
