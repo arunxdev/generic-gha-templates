@@ -30,7 +30,7 @@ jobs:
         with:
           base: "${{ github.event.repository.default_branch }}"
           head: HEAD
-          extra_args: --log-level=2 --results=verified,unknown,unverified
+          extra_args: --log-level=2 --results=verified,unknown,unverified --github-actions
 
       - name: Scan Results Status
         if: steps.trufflehog.outcome == 'failure'
