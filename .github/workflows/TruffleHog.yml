@@ -31,7 +31,7 @@ jobs:
           path: ./
           base: "${{ github.event.repository.default_branch }}"
           head: HEAD
-          extra_args: --log-level=2 --results=verified,unknown,unverified
+          extra_args: --log-level=2 --results=verified
 
       - name: Scan Results Output
         run: |
